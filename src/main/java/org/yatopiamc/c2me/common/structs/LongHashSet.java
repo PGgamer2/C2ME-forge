@@ -52,7 +52,6 @@ public class LongHashSet implements LongSet {
     }
 
     @Nonnull
-    @SuppressWarnings("SuspiciousToArrayCall")
     @Override
     public <T> T[] toArray(@Nonnull T[] a) {
         return delegate.toArray(a);

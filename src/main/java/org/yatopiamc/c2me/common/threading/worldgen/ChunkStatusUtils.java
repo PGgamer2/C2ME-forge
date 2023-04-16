@@ -1,17 +1,14 @@
 package org.yatopiamc.c2me.common.threading.worldgen;
 
-import com.ibm.asyncutil.locks.AsyncLock;
 import com.ibm.asyncutil.locks.AsyncNamedLock;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.ChunkStatus;
 import org.yatopiamc.c2me.common.config.C2MEConfig;
 import org.yatopiamc.c2me.common.threading.GlobalExecutors;
 import org.yatopiamc.c2me.common.util.AsyncCombinedLock;
-import org.yatopiamc.c2me.common.util.AsyncNamedLockDelegateAsyncLock;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.function.Supplier;

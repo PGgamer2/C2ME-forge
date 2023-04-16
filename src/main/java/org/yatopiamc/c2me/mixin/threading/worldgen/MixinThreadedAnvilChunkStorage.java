@@ -59,7 +59,6 @@ public class MixinThreadedAnvilChunkStorage {
      * @author ishland
      * @reason move to scheduler & improve chunk status transition speed
      */
-    @SuppressWarnings("OverwriteTarget")
     @Dynamic
     @Overwrite(aliases = "func_219216_e_")
     private void lambda$scheduleChunkGeneration$21(ChunkHolder chunkHolder, Runnable runnable) { // synthetic method for worldGenExecutor scheduling in upgradeChunk

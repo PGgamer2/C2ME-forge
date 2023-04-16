@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "org.yatopiamc.c2me.mixin",
-  "compatibilityLevel": "JAVA_11",
+  "compatibilityLevel": "JAVA_8",
   "mixins": [
     "chunkscheduling.fix_unload.MixinThreadedAnvilChunkStorage",
     "optimizations.thread_local_biome_sampler.MixinOverworldBiomeProvider",

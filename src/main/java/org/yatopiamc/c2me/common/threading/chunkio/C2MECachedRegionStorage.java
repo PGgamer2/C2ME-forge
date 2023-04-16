@@ -177,7 +177,7 @@ public class C2MECachedRegionStorage extends IOWorker {
     @Override
     public CompletableFuture<Void> synchronize() {
         chunkCache.invalidateAll();
-        return CompletableFuture.allOf(writeFutures.values().toArray(CompletableFuture[]::new)).thenRunAsync(() -> {
+        return CompletableFuture.allOf(writeFutures.values().toArray(new CompletableFuture[] {})).thenRunAsync(() -> {
             try {
                 storage.flush();
             } catch (IOException e) {

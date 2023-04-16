@@ -30,7 +30,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.yatopiamc.c2me.common.threading.chunkio.AsyncSerializationManager;
-import org.yatopiamc.c2me.common.threading.chunkio.C2MECachedRegionStorage;
 import org.yatopiamc.c2me.common.threading.chunkio.ChunkIoMainThreadTaskUtils;
 import org.yatopiamc.c2me.common.threading.chunkio.ChunkIoThreadingExecutorUtils;
 import org.yatopiamc.c2me.common.threading.chunkio.IAsyncChunkStorage;

@@ -9,7 +9,6 @@ import net.minecraft.util.SharedConstants;
 import net.minecraft.util.datafix.DefaultTypeReferences;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.storage.ChunkLoader;
-import net.minecraft.world.chunk.storage.IOWorker;
 import net.minecraft.world.gen.feature.structure.LegacyStructureDataUtil;
 import net.minecraft.world.storage.DimensionSavedDataManager;
 import org.spongepowered.asm.mixin.Final;
@@ -20,10 +19,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.yatopiamc.c2me.common.threading.chunkio.C2MECachedRegionStorage;
 
 import javax.annotation.Nullable;
-import java.io.File;
 import java.util.function.Supplier;
 
 @Mixin(ChunkLoader.class)

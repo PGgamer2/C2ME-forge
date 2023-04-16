@@ -1,10 +1,8 @@
 package org.yatopiamc.c2me.common.util;
 
-import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.ibm.asyncutil.locks.AsyncLock;
 import com.ibm.asyncutil.locks.AsyncNamedLock;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.util.math.ChunkPos;
 import org.threadly.concurrent.UnfairExecutor;
 import org.yatopiamc.c2me.common.config.C2MEConfig;
@@ -12,9 +10,7 @@ import org.yatopiamc.c2me.common.config.C2MEConfig;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ForkJoinPool;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class AsyncCombinedLock {
 
@@ -29,7 +25,7 @@ public class AsyncCombinedLock {
 
     public AsyncCombinedLock(AsyncNamedLock<ChunkPos> lock, Set<ChunkPos> names) {
         this.lock = lock;
-        this.names = names.toArray(ChunkPos[]::new);
+        this.names = names.toArray(new ChunkPos[] {});
         lockWorker.execute(this::tryAcquire);
     }
 
@@ -40,7 +36,7 @@ public class AsyncCombinedLock {
             ChunkPos name = names[i];
             final LockEntry entry = new LockEntry(name, this.lock.tryLock(name));
             tryLocks[i] = entry;
-            if (entry.lockToken.isEmpty()) {
+            if (!entry.lockToken.isPresent()) {
                 allAcquired = false;
                 break;
             }
@@ -57,7 +53,7 @@ public class AsyncCombinedLock {
             for (LockEntry entry : tryLocks) {
                 if (entry == null) continue;
                 entry.lockToken.ifPresent(AsyncLock.LockToken::releaseLock);
-                if (!triedRelock && entry.lockToken.isEmpty()) {
+                if (!triedRelock && !entry.lockToken.isPresent()) {
                     this.lock.acquireLock(entry.name).thenCompose(lockToken -> {
                         lockToken.releaseLock();
                         return CompletableFuture.runAsync(this::tryAcquire, lockWorker);
@@ -76,7 +72,6 @@ public class AsyncCombinedLock {
         return future.thenApply(Function.identity());
     }
 
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     private static class LockEntry {
         public final ChunkPos name;
         public final Optional<AsyncLock.LockToken> lockToken;

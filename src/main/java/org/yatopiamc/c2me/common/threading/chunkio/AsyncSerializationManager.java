@@ -11,7 +11,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ITickList;
 import net.minecraft.world.LightType;
 import net.minecraft.world.SerializableTickList;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.chunk.NibbleArray;
 import net.minecraft.world.lighting.IWorldLightListener;
